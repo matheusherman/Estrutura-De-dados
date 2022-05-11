@@ -8,7 +8,7 @@ public class Dijkstra {
 
     public static void main(String[] args) {
 
-        final int inf = 999;
+        final int inf = 999; //Represents the inifinite value of node connections //Integer.MAX_VALUE
 
         //Defines Start Node and End Node - In this case, nodes go from 0 to 5
         final Integer startNode = 0;
