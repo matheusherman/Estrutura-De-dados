@@ -1,0 +1,151 @@
+
+
+
+/****** Classe NO *********************************************************/
+/*************************************************************************/
+
+class No
+   {
+     int valor;
+     public No p_Esq;
+     public No p_Dir;
+
+     public No(int valor)
+      {
+        this.valor = valor;
+        this.p_Esq = null;
+        this.p_Dir = null;
+       }
+    int getValor()
+       {
+         return this.valor;
+       }
+     void setValor(int novo)
+       {
+          this.valor = novo;
+       }
+}  
+
+/*********************** FIM CLASSE NO **********************************/
+
+
+/****** Classe ArvoreBinaria *********************************************************/
+/*************************************************************************/
+
+
+class ArvoreBinaria
+  {
+    private No raiz;
+    int conta, soma;
+   
+
+     public ArvoreBinaria() //construtor
+          {
+            this.raiz = null;
+          }
+
+     public No ObtemRaiz()
+       {
+         return this.raiz;
+        }
+     public void InsOrd(int novo)
+       {
+        No n = new No(novo);
+        this.raiz = this.Insere(n, this.raiz);
+      }
+
+     private No Insere(No novo, No inicio)
+      {
+        If (inicio != null)
+          {
+      If (novo.ObtemValor() < inicio.ObtemValor())
+        inicio.p_Esq=this.Insere(novo, inicio.p_Esq);
+       else
+       inicio.p_Dir=this.Insere(novo, inicio.p_Dir);
+      return inicio;
+     }
+       else
+     return novo;
+    }
+// Ordem crescente
+public void ImprimirCrescente(No raiz)
+{
+If (raiz != null)
+{
+this.ImprimirCrescente(raiz.p_Esq);
+System.out.print(raiz.ObtemValor() + ", ");
+this.ImprimirCrescente(raiz.p_Dir);
+}
+}
+// Ordem decrescente
+public void ImprimirDecrescente(No raiz)
+{
+If (raiz != null)
+{
+this.ImprimirDecrescente(raiz.p_Dir);
+System.out.print(raiz.ObtemValor() + ", ");
+this.ImprimirDecrescente(raiz.p_Esq);
+}
+}
+
+} // fim da classe
+
+
+
+
+
+/****** Classe Interface *********************************************************/
+/*************************************************************************/
+
+import java.io.*;
+
+public static void main(String Args[])
+  {
+    public InterfaceTesteA()
+      {
+        int dado;
+    
+        
+      ArvoreBinaria oArvore = new ArvoreBinaria();
+
+//ENTRADA DE DADOS 
+     
+/*     BufferedReader input = new BufferedReader ( new InputStreamReader(System.in));
+     String s = input.readLine();
+     dado = Integer.valueOf(s.trim()).intValue();*/
+    
+      
+    // oArvore.InsOrd(dado);
+
+     oArvore.InsOrd(10);
+     oArvore.InsOrd(20); 
+     oArvore.InsOrd(5);
+
+     System.out.println("Ordem Crescente:");
+     oArvore.ImprimirCrescente(oArvore.ObtemRaiz());
+     System.out.println();
+
+     System.out.println("Ordem Decrescente:");
+     oArvore.ImprimirDecrescente(oArvore.ObtemRaiz());
+     System.out.println();
+
+ /*    int conta = oArvore.ContaElementos(oArvore.ObtemRaiz());
+     System.out.println("Elementos: " + conta);
+
+     int soma = oArvore.SomaElementos(oArvore.ObtemRaiz());
+     System.out.println("Soma dos Elementos: " + soma);
+     
+     int maior = oArvore.MaiorElemento(oArvore.ObtemRaiz());
+     System.out.println("Elemento Maior: " + maior);
+
+     int menor = oArvore.MenorElemento(oArvore.ObtemRaiz());
+     System.out.println("Elemento Menor: " + menor); */
+}
+}
+ }
+} 
+
+
+
+
+
