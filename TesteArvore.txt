@@ -1,4 +1,4 @@
-// -------------- N” DE ¡RVORE
+// -------------- N√ì DE √ÅRVORE
 public class pTwoChildNode{
     protected Object data;
     protected pTwoChildNode left,right;
@@ -34,7 +34,7 @@ public class pTwoChildNode{
     } }
 
 
-// -------------------¡RVORE
+// -------------------√ÅRVORE
 import pTwoChildNode;
 
 public abstract class pGenericBinaryTree{
