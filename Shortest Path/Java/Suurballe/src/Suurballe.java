@@ -13,7 +13,7 @@ public class Suurballe {
     public static void main(String[] args) {
 
         Random generator = new Random();
-        generator.setSeed(System.currentTimeMillis());
+        generator.setSeed(System.currentTimeMillis()); //Generate a different seed every time the program runs
 
         //Defines Start Node and End Node - In this case, nodes go from 0 to 29
         int startNode = 0;
@@ -22,7 +22,7 @@ public class Suurballe {
         //Represents the graph with the costs between each link
         int[][] graph = new int[30][30];
 
-        for (int[] row : graph) // Fill each row with inf
+        for (int[] row : graph) //Fill each row with the infinite value
             Arrays.fill(row, inf);
 
         for (int i = 0; i < graph.length; i++) {
