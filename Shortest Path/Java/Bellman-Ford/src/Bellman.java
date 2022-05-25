@@ -13,7 +13,7 @@ public class Bellman {
         final int inf = 9999; //Represents the infinite value
 
         Random generator = new Random();
-        generator.setSeed(System.currentTimeMillis());
+        generator.setSeed(System.currentTimeMillis()); //Generate a different seed every time the program runs
 
         //Defines Start Node and End Node - In this case, nodes go from 0 to 29
         final Integer startNode = 0;
@@ -22,7 +22,7 @@ public class Bellman {
         //Represents the graph with the costs between each link
         int[][] costs = new int[30][30];
 
-        for (int[] row : costs) // Fill each row with inf.
+        for (int[] row : costs) //Fill each eow with the infinite value
             Arrays.fill(row, inf);
 
         for (int i = 0; i < costs.length; i++) {
@@ -99,7 +99,5 @@ public class Bellman {
             System.out.print("  " + (a + 1));
 
         System.out.println();
-
-
     }
 }
