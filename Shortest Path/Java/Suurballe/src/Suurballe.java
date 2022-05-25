@@ -1,28 +1,49 @@
 //MATHEUS HERMAN BERNARDIM ANDRADE
 
-import static java.sql.Types.NULL;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
+
+import static java.sql.Types.NULL;
 
 public class Suurballe {
     static final int inf = 9999; //Represents the infinite value
     static int[] distance;
 
     public static void main(String[] args) {
+
+        Random generator = new Random();
+        generator.setSeed(System.currentTimeMillis());
+
+        //Defines Start Node and End Node - In this case, nodes go from 0 to 29
         int startNode = 0;
-        int endNode = 11;
-        //                 1   2   3    4    5   6    7    8   9   10   11   12
-        int[][] graph = {{inf, 1, inf, inf, inf, inf, inf, 2, inf, inf, inf, inf},  //1
-                        {inf, inf, 1, inf, inf, inf, inf, inf, 3, inf, inf, inf},   //2
-                        {inf, inf, inf, 1, inf, inf, inf, inf, inf, inf, inf, inf}, //3
-                        {inf, inf, inf, inf, 1, inf, inf, inf, inf, 3, inf, inf},   //4
-                        {inf, inf, inf, inf, inf, 1, inf, inf, inf, inf, inf, inf}, //5
-                        {inf, inf, inf, inf, inf, inf, 1, inf, inf, inf, 2, inf},   //6
-                        {inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, 1}, //7
-                        {inf, inf, 1, inf, inf, inf, inf, inf, inf, inf, inf, inf}, //8
-                        {inf, inf, inf, inf, 1, inf, inf, inf, inf, inf, inf, inf}, //9
-                        {inf, inf, inf, inf, inf, inf, 1, inf, inf, inf, inf, inf}, //10
-                        {inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, 1}, //11
-                        {inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf, inf}};//12
+        int endNode = 29;
+
+        //Represents the graph with the costs between each link
+        int[][] graph = new int[30][30];
+
+        for (int[] row : graph) // Fill each row with inf
+            Arrays.fill(row, inf);
+
+        for (int i = 0; i < graph.length; i++) {
+            int edge = generator.nextInt(0, 4); //Generate the number of connections for each node
+            while (edge != 0) {
+                int link = generator.nextInt(0, graph.length); //Select the node to connect
+                int cost = generator.nextInt(0,21); //Generate the cost of the link
+                if (cost == 0 || i == link) {
+                    cost = inf;
+                }
+                if (link == i) {
+                    graph[i][link] = inf; //Insert the infinite value when a node link on himself
+                }
+                //Insert the value of the costs on the node position
+                graph[i][link] = cost;
+                if (graph[i][link] != 9999) {
+                    graph[link][i] = graph[i][link]; //Provides the connection from both sides in a node
+                }
+                edge--;
+            }
+        }
 
         int[][] modGraph = new int[graph.length][graph.length];
         for (int i = 0; i < graph.length; i++)
@@ -53,7 +74,7 @@ public class Suurballe {
                 int s2 = secondShortestPath.get(j);     //Start node of the link
                 int d2 = secondShortestPath.get(j + 1); //End node of the link
                 if (s1 == d2 && d1 == s2)               //Check if the link is the same, but in different directions
-                graph[s1][d1] = inf;                    //Deletes the link from the modified graph
+                    graph[s1][d1] = inf;                    //Deletes the link from the modified graph
             }
         }
         //5th step
