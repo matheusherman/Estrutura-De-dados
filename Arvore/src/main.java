@@ -1,3 +1,7 @@
+//MATHEUS HERMAN BERNARDIM ANDRADE
+//LEANDRO RICARDO GUIMARÃES
+//GABRIELLE BATISTA GARCIA
+
 import java.util.ArrayList;
 import java.util.Random;
 
