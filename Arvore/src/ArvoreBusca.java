@@ -1,6 +1,6 @@
 public class ArvoreBusca {
     private No raiz;
-
+    private No raizBusca;
 
     public ArvoreBusca() //construtor
     {
@@ -26,6 +26,30 @@ public class ArvoreBusca {
         } else
             return novo;
     }
+
+    public Integer Buscar(int busca) {
+        try {
+            this.raizBusca = this.raiz;
+            while (busca != raizBusca.valor) {
+                Busca(busca, raizBusca);
+            }
+            return raizBusca.valor;
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    private No Busca(int busca, No raizBusca) {
+        if (busca != raizBusca.getValor()) {
+            if (busca < raizBusca.getValor())
+                this.raizBusca = raizBusca.p_Esq;
+            else
+                this.raizBusca = raizBusca.p_Dir;
+            return this.raizBusca;
+        } else
+            return this.raiz;
+    }
+
 
     // Ordem crescente
     public void ImprimirCrescente(No raiz) {
