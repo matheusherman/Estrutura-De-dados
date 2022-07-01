@@ -13,7 +13,7 @@ public class Bellman {
         final int inf = 9999; //Represents the infinite value
 
         Random generator = new Random();
-        generator.setSeed(System.currentTimeMillis()); //Generate a different seed every time the program runs
+        generator.setSeed(System.currentTimeMillis());
 
         //Defines Start Node and End Node - In this case, nodes go from 0 to 29
         final Integer startNode = 0;
@@ -22,9 +22,10 @@ public class Bellman {
         //Represents the graph with the costs between each link
         int[][] costs = new int[30][30];
 
-        for (int[] row : costs) //Fill each eow with the infinite value
+        for (int[] row : costs) // Fill each row with inf.
             Arrays.fill(row, inf);
 
+        //CREATING THE RANDOM EDGES WITH HIS LINKS AND COSTS
         for (int i = 0; i < costs.length; i++) {
             int edge = generator.nextInt(0, 4); //Generate the number of connections for each node
             while (edge != 0) {
@@ -38,9 +39,9 @@ public class Bellman {
                 }
                 //Insert the value of the costs on the node position
                 costs[i][link] = cost;
-                if (costs[i][link] != 9999) {
+                /*if (costs[i][link] != 9999) {
                     costs[link][i] = costs[i][link]; //Provides the connection from both sides in a node
-                }
+                }*/
                 edge--;
             }
         }
@@ -99,5 +100,16 @@ public class Bellman {
             System.out.print("  " + (a + 1));
 
         System.out.println();
+
+        //Prints the links of each node with his respective costs
+        for (int i = 0; i < 30; i++) {
+            for (int j = 0; j < 30; j++) {
+                if (costs[i][j] != inf) {
+                    System.out.println("Node " + (i+1) + " to " + (j+1) + " - cost " + costs[i][j]);
+                }
+            }
+        }
+
+
     }
 }
